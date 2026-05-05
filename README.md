@@ -7,7 +7,8 @@
 **K8S-nativelb** is a loadbalancer add-on for Kubernetes. 
 The aim is to provide a LoadBalancer type service for baremetal and clusters without cloud provider.
 
-**Note:** K8S-nativelb is a heavy work in progress.
+
+This is a test for the bytebot project workflow
 
 # Introduction
 
