@@ -1,0 +1,45 @@
+sudo: required
+dist: xenial
+
+services:
+- docker
+
+env:
+- BUILDER_NAME="k8s-nativelb/${TRAVIS_JOB_ID}builder" CDIST=kubernetes CVER=1.13.3
+
+#jobs:
+#  include:
+#  - stage: Tests
+#    name: "minikube (1.11)"
+#    env: CPLATFORM=minikube CDIST=kubernetes CVER=1.11.3
+#
+#  - name: "oc cluster (3.10)"
+#    env: CPLATFORM=oc_cluster CDIST=origin CVER=3.10.0
+#
+#  - name: "minishift (3.10)"
+#    env: CPLATFORM=minishift CDIST=origin CVER=3.10.0
+
+script:
+- sudo cp ./cluster/dind-cluster/kubectl /usr/bin/kubectl
+- make docker-generate
+- if [[ -n "$(git status --porcelain)" ]] ; then echo "It seems like you need to run make. Please run it and commit the changes"; git status --porcelain; false; fi
+- if [[ $TRAVIS_REPO_SLUG == "k8s-nativelb/k8s-nativelb" ]]; then make docker-goveralls; else make docker-test; fi
+- make cluster-up
+- make cluster-sync
+- timeout 20m make docker-functest
+
+deploy:
+- provider: script
+  script: docker login -u="$DOCKER_USER" -p="$DOCKER_PASS" quay.io && make docker-build && make docker-push
+  skip_cleanup: true
+  on:
+    branch: master
+- provider: script
+  script: docker login -u="$DOCKER_USER" -p="$DOCKER_PASS" quay.io && IMAGE_TAG=$TRAVIS_TAG make docker-build && IMAGE_TAG=$TRAVIS_TAG make docker-push
+  skip_cleanup: true
+  file:
+  on:
+    tags: true
+
+notifications:
+  slack: nativelb:qSryTAFxzsFUgMusY0I06N5R

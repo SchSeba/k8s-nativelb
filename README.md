@@ -7,8 +7,16 @@
 **K8S-nativelb** is a loadbalancer add-on for Kubernetes. 
 The aim is to provide a LoadBalancer type service for baremetal and clusters without cloud provider.
 
+**Note:** K8S-nativelb is a heavy work in progress.
 
-This is a test for the bytebot project workflow
+## ByteBot Integration
+
+This project uses [ByteBot](https://bytebot.ai) to automate development workflows including:
+
+- **Automated PR Reviews**: ByteBot agents review pull requests for code quality, style consistency, and potential issues.
+- **CI/CD Orchestration**: Integration with CI pipelines to streamline testing and deployment processes.
+- **Issue Triage**: Automated categorization and prioritization of GitHub issues.
+- **Code Generation**: Scaffolding and boilerplate generation for new features following project conventions.
 
 # Introduction
 
