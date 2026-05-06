@@ -1,6 +1,5 @@
 # k8s-nativelb
 
-[![Build Status](https://travis-ci.org/k8s-nativelb/k8s-nativelb.svg?branch=master)](https://travis-ci.org/k8s-nativelb/k8s-nativelb)
 [![Licensed under Apache License version 2.0](https://img.shields.io/github/license/k8s-nativelb/k8s-nativelb.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Coverage Status](https://coveralls.io/repos/github/k8s-nativelb/k8s-nativelb/badge.svg?branch=master)](https://coveralls.io/github/k8s-nativelb/k8s-nativelb?branch=master)
 
@@ -8,6 +7,8 @@
 The aim is to provide a LoadBalancer type service for baremetal and clusters without cloud provider.
 
 **Note:** K8S-nativelb is a heavy work in progress.
+
+**Note:** The Travis CI configuration (`.travis.yml`) and build status badge have been removed as Travis CI has been decommissioned.
 
 ## ByteBot Integration
 
